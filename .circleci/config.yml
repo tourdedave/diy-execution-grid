@@ -1,0 +1,50 @@
+version: 2.1
+orbs:
+  browser-tools: circleci/browser-tools@1.4.6
+jobs:
+  test_all:
+    docker:
+      - image: cimg/node:20.4.0-browsers
+    steps:
+      - browser-tools/install-chrome
+      - run:
+          command: |
+            google-chrome --version
+          name: Check install
+      - run:
+          command: npm i
+      - run:
+          command: npm run test:all
+  test_all_with_ec:
+    docker:
+      - image: cimg/node:20.4.0-browsers
+    steps:
+      - browser-tools/install-chrome
+      - run:
+          command: |
+            google-chrome --version
+          name: Check install
+      - run:
+          command: npm i
+      - run:
+          command: npm run test:all:with_ec
+  test_all_with_ec_no_eyes:
+    docker:
+      - image: cimg/node:20.4.0-browsers
+    steps:
+      - browser-tools/install-chrome
+      - run:
+          command: |
+            google-chrome --version
+          name: Check install
+      - run:
+          command: npm i
+      - run:
+          command: npm run test:all:with_ec:no_eyes                     
+workflows:
+  version: 2
+  run_all:
+    jobs:
+      - test_all
+      - test_all_with_ec
+      - test_all_with_ec_no_eyes
