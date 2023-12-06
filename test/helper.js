@@ -38,6 +38,7 @@ async function init() {
     eyes.setConfiguration(config)
 
     async function blink({driver, appName, testName, viewportSize}) {
+      if (!!process.env.APPLITOOLS_SKIP_EYES) return
       await eyes.open(
         driver,
         appName,
