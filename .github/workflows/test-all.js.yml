@@ -32,4 +32,4 @@ jobs:
     - uses: browser-actions/setup-chrome@latest
     - run: chrome --version
     - run: npm i
-    - run: npm test:one
+    - run: npm run test:all
