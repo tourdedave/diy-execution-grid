@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --no-timeouts"
+    "test:one": "mocha --no-timeouts test/01.js",
+    "test:all": "mocha --no-timeouts --parallel"
   },
   "keywords": [],
   "author": "",

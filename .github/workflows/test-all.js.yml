@@ -6,7 +6,7 @@ name: test one
 on:
   pull_request:
     branches: [ "main" ]
-  workflow_dispatchj
+  workflow_dispatch:
 
 
 jobs:
@@ -32,4 +32,4 @@ jobs:
     - uses: browser-actions/setup-chrome@latest
     - run: chrome --version
     - run: npm i
-    - run: npm test:all
+    - run: npm test:one
