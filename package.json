@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test:one": "mocha --no-timeouts test/01.js",
-    "test:all": "mocha --no-timeouts --parallel"
+    "test:all": "mocha --no-timeouts --parallel",
+    "test:one:with_ec": "APPLITOOLS_USE_EXECUTION_CLOUD=true mocha --no-timeouts test/01",
+    "test:all:with_ec": "APPLITOOLS_USE_EXECUTION_CLOUD=true mocha --no-timeouts --parallel"
   },
   "keywords": [],
   "author": "",

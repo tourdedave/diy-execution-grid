@@ -2,17 +2,15 @@ const {init} = require('./helper')
 
 describe('ping?', () => {
   it('pong!', async () => {
-    const {driver, eyes, RectangleSize} = await init()
+    const {driver, blink} = await init()
     try {
       await driver.get('https://applitools.com/helloworld/')
-      await eyes.open(
+      await blink({
         driver,
-        'ping?',
-        'pong!',
-        new RectangleSize(1200, 600)
-      )
-      await eyes.check()
-      await eyes.close()
+        appName: 'ping?',
+        testName: 'pong!',
+        viewportSize: {width: 1200, height: 600},
+      })
     } finally {
       await driver.quit()
     }
