@@ -25,7 +25,7 @@ async function init() {
     } else {
       driver = await new Builder().withCapabilities(caps).build()
     }
-    runner = new VisualGridRunner(new RunnerOptions().testConcurrency(5))
+    runner = new VisualGridRunner(new RunnerOptions().testConcurrency(100))
     config = new Configuration()
     const batch = new BatchInfo('Platform demo')
     config.setBatch(batch)
