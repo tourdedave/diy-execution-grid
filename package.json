@@ -4,11 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test:one": "mocha --no-timeouts test/01.js",
-    "test:all": "mocha --no-timeouts --parallel --jobs 20",
-    "test:one:with_ec": "APPLITOOLS_USE_EXECUTION_CLOUD=true npm run test:one",
-    "test:all:with_ec": "APPLITOOLS_USE_EXECUTION_CLOUD=true npm run test:all",
-    "test:all:with_ec:no_eyes": "APPLITOOLS_SKIP_EYES=true APPLITOOLS_USE_EXECUTION_CLOUD=true npm run test:all"
+    "test": "mocha --no-timeouts --parallel"
   },
   "keywords": [],
   "author": "",
