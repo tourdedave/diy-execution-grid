@@ -1,0 +1,40 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: test many nodes
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    env:
+      APPLITOOLS_API_KEY: ${{ secrets.APPLITOOLS_API_KEY }}
+
+    strategy:
+      matrix:
+        # See supported Node.js release schedule at
+        # https://nodejs.org/en/about/releases/
+        node-version: [16.x]
+        # as many jobs as you want, but less than numbers of tests
+        shard: [1,2,3,4,5,6,7,8,9,10]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - uses: browser-actions/setup-chrome@latest
+    - run: chrome --version
+    - run: npm i
+    - name: find test files to be run
+      run: echo "SHARD_FILES=$(find test -type f -name "*.js" | grep -v helper | sed -n '${{matrix.shard}}~${{strategy.job-total}}p' | tr '\n' ' ')" >> $GITHUB_ENV
+    - run: npm run test ${{env.SHARD_FILES}}
