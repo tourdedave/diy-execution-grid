@@ -23,7 +23,7 @@ jobs:
         # https://nodejs.org/en/about/releases/
         node-version: [16.x]
         # as many jobs as you want, but less than numbers of tests
-        shard: [1,2,3,4,5,6,7,8,9,10]
+        shard: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 
     steps:
     - uses: actions/checkout@v3
