@@ -22,10 +22,10 @@ describe('ACME Bank', () => {
         cy.eyesCheckWindow({
             tag: "Main page",
             // Uncomment to apply Layout regions and have test pass
-            // layout: [
-            //     {selector: '.dashboardOverview_accountBalances__3TUPB'},
-            //     {selector: '.dashboardTable_dbTable___R5Du'}
-            // ]
+            layout: [
+                {selector: '.dashboardOverview_accountBalances__3TUPB'},
+                {selector: '.dashboardTable_dbTable___R5Du'}
+            ]
         });
     })
     afterEach(() => {
