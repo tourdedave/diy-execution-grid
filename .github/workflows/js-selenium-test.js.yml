@@ -30,6 +30,7 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
+        working-directory: ./js/selenium
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - uses: browser-actions/setup-chrome@latest
