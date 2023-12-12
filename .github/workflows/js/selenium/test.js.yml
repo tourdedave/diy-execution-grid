@@ -1,7 +1,7 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: test one node
+name: test js selenium
 
 on:
   pull_request:
@@ -10,7 +10,7 @@ on:
 
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
 
@@ -19,8 +19,11 @@ jobs:
 
     strategy:
       matrix:
+        # See supported Node.js release schedule at
+        # https://nodejs.org/en/about/releases/
         node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        # as many jobs as you want, but less than numbers of tests
+        shard: [1,2,3,4,5,6,7,8,9,10,11,12,13,14]
 
     steps:
     - uses: actions/checkout@v3
@@ -31,5 +34,12 @@ jobs:
         cache: 'npm'
     - uses: browser-actions/setup-chrome@latest
     - run: chrome --version
-    - run: npm i
-    - run: npm run test
+    - name: install deps
+      working-directory: ./js/selenium
+      run: npm i
+    - name: find test files to be run
+      working-directory: ./js/selenium
+      run: echo "SHARD_FILES=$(find test -type f -name "*.js" | grep -v helper | sed -n '${{matrix.shard}}~${{strategy.job-total}}p' | tr '\n' ' ')" >> $GITHUB_ENV
+    - name: run tests
+      working-directory: ./js/selenium
+      run: npm run test ${{env.SHARD_FILES}}
