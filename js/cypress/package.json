@@ -6,7 +6,7 @@
 	"scripts": {
     "cy:run": "cypress run",
 		"test:bak": "cypress run --browser chrome --spec ./cypress/e2e/simple-example.cy.js",
-		"test": "cypress-parallel -s cy:run -t 3 -d 'cypress/e2e'",
+		"test": "cypress-parallel -s cy:run -t 4 -d 'cypress/e2e'",
 		"cypress:open": "cypress open"
 	},
 	"author": "Applitools Team <team@applitools.com> (http://www.applitools.com/)",
